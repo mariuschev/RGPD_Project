@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Politique de confidentialité</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:rgba(255,255,255,.06); --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72); --border:rgba(255,255,255,.12);
+      --primary:#2dd4bf; --primary2:#22c55e; --shadow:0 20px 50px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+        linear-gradient(180deg,#070b14,var(--bg));
+      min-height:100vh;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(980px,92vw); margin:0 auto}
+    header{border-bottom:1px solid var(--border); background:rgba(7,11,20,.6); backdrop-filter:blur(10px)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:16px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+               linear-gradient(135deg,var(--primary),var(--primary2));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 10px 25px rgba(45,212,191,.18);
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px; border:1px solid var(--border);
+      background:rgba(255,255,255,.04); font-weight:650; font-size:14px;
+    }
+    .btn:hover{background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.18)}
+    main{padding:28px 0 50px}
+    .card{border:1px solid var(--border); background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px}
+    h1{margin:0 0 10px; font-size:26px}
+    h2{margin:18px 0 8px; font-size:16px}
+    p,li{color:var(--muted); font-size:14px; line-height:1.6}
+    ul{margin:8px 0 0 18px}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center; padding:6px 10px;
+      border-radius:999px; border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04); color:rgba(255,255,255,.85); font-size:12.5px;
+    }
+    .note{margin-top:14px; border:1px solid rgba(45,212,191,.25); background:rgba(45,212,191,.08); border-radius:14px; padding:12px}
+    footer{border-top:1px solid var(--border); padding:18px 0 26px; color:var(--muted); font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html"><div class="logo"></div><span>Heal The World</span></a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="data-rights.html">Mes données</a>
+        <a class="btn" href="index.html">Accueil</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Politique de confidentialité</h1>
+      <p>Cette politique explique quelles données sont collectées, pourquoi, pendant combien de temps, et comment exercer vos droits (RGPD).</p>
+
+      <div class="meta">
+        <div class="pill">📌 Version : 1.0</div>
+        <div class="pill">🗓️ Dernière mise à jour : <span id="date"></span></div>
+        <div class="pill">🔐 Principe : minimisation des données</div>
+      </div>
+
+      <h2>1) Responsable du traitement</h2>
+      <p><b>Heal The World</b> (organisation fictive dans le cadre du projet). Contact : <b>dpo@healtheworld.local</b> (à remplacer).</p>
+
+      <h2>2) Finalités</h2>
+      <ul>
+        <li>Créer et gérer votre compte.</li>
+        <li>Enregistrer vos trajets et estimer vos émissions CO₂.</li>
+        <li>Gérer la compensation (plantation d’arbres) et le suivi.</li>
+        <li>Envoyer des notifications optionnelles (si vous y consentez).</li>
+        <li>Classement optionnel sous pseudo (si vous y consentez).</li>
+      </ul>
+
+      <h2>3) Données collectées</h2>
+      <ul>
+        <li><b>Compte</b> : nom, prénom, email, mot de passe (haché).</li>
+        <li><b>Trajets</b> : type de transport, distance/durée, date (et éventuellement localisation si GPS activé).</li>
+        <li><b>Paiement</b> : informations de transaction (référence, montant, statut). Les données bancaires sont gérées par un prestataire.</li>
+        <li><b>Préférences</b> : consentements (GPS, emails, classement) + historique.</li>
+      </ul>
+
+      <h2>4) Base légale</h2>
+      <ul>
+        <li><b>Contrat</b> : création de compte, calcul CO₂, compensation.</li>
+        <li><b>Consentement</b> : GPS, emails, classement.</li>
+        <li><b>Intérêt légitime</b> (si applicable) : sécurité, lutte contre fraude, logs techniques.</li>
+      </ul>
+
+      <h2>5) Durées de conservation (exemples)</h2>
+      <ul>
+        <li>Compte : tant que le compte est actif.</li>
+        <li>Trajets : durée nécessaire au suivi (ex: 24 mois), puis anonymisation/suppression.</li>
+        <li>Paiements : durée légale/contractuelle (ex: 5 à 10 ans selon obligations).</li>
+        <li>Logs : durée courte (ex: 30 à 90 jours).</li>
+      </ul>
+
+      <h2>6) Sécurité</h2>
+      <ul>
+        <li>Mots de passe hachés (ex: bcrypt/argon2).</li>
+        <li>Chiffrement en transit (HTTPS) et restrictions d’accès.</li>
+        <li>Principe du moindre privilège, journalisation et supervision.</li>
+      </ul>
+
+      <h2>7) Partage des données</h2>
+      <p>Partage limité : prestataire de paiement, hébergeur, et services nécessaires au fonctionnement. Aucun partage non nécessaire.</p>
+
+      <h2>8) Vos droits</h2>
+      <ul>
+        <li>Accès, rectification, suppression</li>
+        <li>Export (portabilité)</li>
+        <li>Opposition et limitation</li>
+        <li>Retrait du consentement à tout moment</li>
+      </ul>
+
+      <div class="note">
+        <b>Gérer vos données :</b> utilisez la page <a href="data-rights.html" style="text-decoration:underline; text-underline-offset:3px;">Mes données</a>.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div>© <span id="y"></span> Heal The World</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="terms.html">Conditions</a>
+        <a href="login.html">Connexion</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const d = new Date();
+    document.getElementById("y").textContent = d.getFullYear();
+    document.getElementById("date").textContent = d.toLocaleDateString("fr-FR");
+  </script>
+</body>
+</html>

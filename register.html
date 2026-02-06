@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Inscription</title>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --primary: #2dd4bf;
+      --primary2:#22c55e;
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+      --danger: #fb7185;
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+        linear-gradient(180deg, #070b14, var(--bg));
+      min-height: 100vh;
+    }
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(980px, 92vw); margin: 0 auto; }
+    header{
+      border-bottom: 1px solid var(--border);
+      background: rgba(7,11,20,.6);
+      backdrop-filter: blur(10px);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px; }
+    .logo{
+      width: 38px; height: 38px; border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+        linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 10px 25px rgba(45,212,191,.18);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 10px 14px; border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 650; font-size: 14px;
+      transition: transform .08s ease, background .2s ease, border .2s ease;
+      cursor:pointer; user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); transform: translateY(-1px); }
+    .btn-primary{
+      border-color: rgba(45,212,191,.35);
+      background: linear-gradient(135deg, rgba(45,212,191,.28), rgba(34,197,94,.22));
+    }
+
+    main{ padding: 34px 0 48px; }
+    .grid{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: 16px;
+      align-items:start;
+    }
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    h1{ margin: 0 0 6px; font-size: 26px; letter-spacing:-.2px; }
+    .sub{ margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+
+    form{ display:grid; gap: 12px; margin-top: 10px; }
+    .row2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label{ font-size: 13px; color: rgba(255,255,255,.82); font-weight: 650; }
+    .hint{ font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+    input{
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus{ border-color: rgba(45,212,191,.5); box-shadow: 0 0 0 6px rgba(45,212,191,.10); }
+
+    .check{
+      display:flex; gap: 10px; align-items:flex-start;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+    }
+    .check input{ width:auto; margin: 2px 0 0; }
+    .check b{ font-size: 13px; }
+    .check p{ margin: 3px 0 0; color: var(--muted); font-size: 12.5px; }
+
+    .error{
+      display:none;
+      border: 1px solid rgba(251,113,133,.35);
+      background: rgba(251,113,133,.10);
+      color: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    .footer-row{
+      display:flex; justify-content:space-between; gap: 10px; flex-wrap: wrap;
+      align-items:center; margin-top: 6px;
+    }
+    .link{ color: rgba(255,255,255,.86); text-decoration: underline; text-underline-offset: 3px; }
+    .small{ font-size: 12.5px; color: var(--muted); }
+
+    .side .tile{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .side h3{ margin:0 0 6px; font-size: 15px; }
+    .side ul{ margin: 8px 0 0 18px; color: var(--muted); font-size: 13px; }
+    .side li{ margin: 4px 0; }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Heal The World</span>
+      </a>
+      <a class="btn" href="login.html">Se connecter</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <div class="card">
+        <h1>Créer un compte</h1>
+        <p class="sub">Inscription rapide. Collecte minimale et consentements gérés selon le RGPD.</p>
+
+        <div id="errorBox" class="error" role="alert"></div>
+
+        <form id="registerForm" novalidate>
+          <div class="row2">
+            <div>
+              <label for="firstName">Prénom</label>
+              <input id="firstName" name="firstName" autocomplete="given-name" required />
+            </div>
+            <div>
+              <label for="lastName">Nom</label>
+              <input id="lastName" name="lastName" autocomplete="family-name" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="ex: nom@exemple.com" required />
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="password">Mot de passe</label>
+              <input id="password" name="password" type="password" autocomplete="new-password" required />
+              <div class="hint">8 caractères min., avec au moins 1 chiffre.</div>
+            </div>
+            <div>
+              <label for="password2">Confirmer</label>
+              <input id="password2" name="password2" type="password" autocomplete="new-password" required />
+            </div>
+          </div>
+
+          <!-- Consentement obligatoire -->
+          <div class="check">
+            <input id="consentMain" type="checkbox" required />
+            <div>
+              <b>J’accepte la politique de confidentialité (obligatoire)</b>
+              <p>
+                Vos données sont utilisées uniquement pour calculer votre impact CO₂ et gérer la compensation.
+                <a class="link" href="privacy.html">Lire la politique</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Consentements optionnels -->
+          <div class="check">
+            <input id="consentGPS" type="checkbox" />
+            <div>
+              <b>Activer le GPS (optionnel)</b>
+              <p>Permet de faciliter la déclaration de trajets. Vous pouvez le désactiver à tout moment.</p>
+            </div>
+          </div>
+
+          <div class="check">
+            <input id="consentEmails" type="checkbox" />
+            <div>
+              <b>Recevoir des emails (optionnel)</b>
+              <p>Rappels mensuels de compensation et nouveautés du site.</p>
+            </div>
+          </div>
+
+          <div class="check">
+            <input id="consentRanking" type="checkbox" />
+            <div>
+              <b>Apparaître dans le classement (optionnel)</b>
+              <p>Affichage sous pseudo uniquement (recommandé).</p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Créer mon compte</button>
+
+          <div class="footer-row">
+            <div class="small">
+              Déjà inscrit ? <a class="link" href="login.html">Se connecter</a>
+            </div>
+            <div class="small">
+              <a class="link" href="index.html">Retour à l’accueil</a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <aside class="side">
+        <div class="tile">
+          <h3>Pourquoi ces données ?</h3>
+          <ul>
+            <li>Compte : accès à votre espace</li>
+            <li>Trajets : calcul d’émissions CO₂</li>
+            <li>Paiement : plantation d’arbres</li>
+          </ul>
+        </div>
+
+        <div class="tile">
+          <h3>Vos droits (RGPD)</h3>
+          <ul>
+            <li>Accès / rectification / suppression</li>
+            <li>Export de vos données</li>
+            <li>Retrait du consentement</li>
+          </ul>
+          <p class="small" style="margin:10px 0 0;">
+            Vous pourrez tout gérer dans “Mes données”.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    // Validation simple front (démo)
+    const form = document.getElementById("registerForm");
+    const errorBox = document.getElementById("errorBox");
+
+    function showError(msg){
+      errorBox.textContent = msg;
+      errorBox.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function clearError(){
+      errorBox.textContent = "";
+      errorBox.style.display = "none";
+    }
+    function isStrongPassword(pw){
+      return pw.length >= 8 && /\d/.test(pw);
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      clearError();
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const pw = document.getElementById("password").value;
+      const pw2 = document.getElementById("password2").value;
+      const consentMain = document.getElementById("consentMain").checked;
+
+      if(!firstName || !lastName) return showError("Veuillez renseigner votre nom et prénom.");
+      if(!email.includes("@")) return showError("Veuillez saisir un email valide.");
+      if(!isStrongPassword(pw)) return showError("Mot de passe trop faible (8 caractères + 1 chiffre minimum).");
+      if(pw !== pw2) return showError("Les mots de passe ne correspondent pas.");
+      if(!consentMain) return showError("Vous devez accepter la politique de confidentialité pour continuer.");
+
+      // Ici, tu enverras les données au backend (FastAPI / API etc.)
+      // Ex: fetch('/api/register', { method:'POST', body: JSON.stringify(...) })
+
+      alert("Compte créé (démo) ✅\nTu peux maintenant te connecter.");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Compensation</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:rgba(255,255,255,.06); --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72); --border:rgba(255,255,255,.12);
+      --primary:#2dd4bf; --primary2:#22c55e; --shadow:0 20px 50px rgba(0,0,0,.35);
+      --radius:18px; --danger:#fb7185;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+        linear-gradient(180deg,#070b14,var(--bg));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(980px,92vw);margin:0 auto}
+    header{border-bottom:1px solid var(--border);background:rgba(7,11,20,.6);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+               linear-gradient(135deg,var(--primary),var(--primary2));
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;border:1px solid var(--border);
+      background:rgba(255,255,255,.04);font-weight:650;font-size:14px;cursor:pointer
+    }
+    .btn:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
+    .btn-primary{
+      border-color:rgba(45,212,191,.35);
+      background:linear-gradient(135deg, rgba(45,212,191,.28), rgba(34,197,94,.22))
+    }
+    main{padding:24px 0 50px}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;align-items:start}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    h1{margin:0 0 6px;font-size:26px}
+    .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+    .tile{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:var(--radius);padding:14px;margin-top:12px}
+    .tile h2{margin:0 0 6px;font-size:15px}
+    .tile p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+    label{font-size:13px;color:rgba(255,255,255,.82);font-weight:650}
+    input,select{
+      width:100%;padding:10px 12px;margin-top:6px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);
+      color:var(--text);outline:none
+    }
+    input:focus,select:focus{border-color:rgba(45,212,191,.5);box-shadow:0 0 0 6px rgba(45,212,191,.10)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .kpi{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.85);font-size:12.5px
+    }
+    .note{margin-top:12px;border:1px solid rgba(45,212,191,.25);background:rgba(45,212,191,.08);border-radius:14px;padding:12px;color:rgba(255,255,255,.88);font-size:13px}
+    .receipt{display:none}
+    footer{border-top:1px solid var(--border);padding:18px 0 26px;color:var(--muted);font-size:13px;margin-top:18px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="dashboard.html"><div class="logo"></div><span>Heal The World</span></a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn" href="dashboard.html">Dashboard</a>
+        <a class="btn" href="privacy.html">Confidentialité</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <div class="card">
+        <h1>Compenser mes émissions</h1>
+        <p class="sub">Choisissez un nombre d’arbres à financer. Paiement simulé pour le projet.</p>
+
+        <div class="tile">
+          <h2>Estimation (démo)</h2>
+          <p>Hypothèse : 1 arbre compense <b id="kgPerTreeText"></b> kg de CO₂ (valeur fictive).</p>
+          <div class="kpi">
+            <div class="pill">🌫️ CO₂ à compenser : <span id="co2Month">—</span> kg</div>
+            <div class="pill">🌳 Arbres recommandés : <span id="treesRec">—</span></div>
+          </div>
+        </div>
+
+        <form id="payForm" style="display:grid; gap:12px; margin-top:12px;" novalidate>
+          <div class="row2">
+            <div>
+              <label for="trees">Nombre d’arbres</label>
+              <input id="trees" type="number" min="1" step="1" required />
+            </div>
+            <div>
+              <label for="plan">Type de plantation</label>
+              <select id="plan">
+                <option value="standard">Standard</option>
+                <option value="local">Locale (projet local)</option>
+                <option value="premium">Premium (suivi renforcé)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tile">
+            <h2>Total</h2>
+            <p>Prix unitaire (démo) : <b id="priceTree">—</b> € / arbre</p>
+            <div class="kpi">
+              <div class="pill">💶 Total : <span id="total">—</span> €</div>
+              <div class="pill">🌍 CO₂ estimé compensé : <span id="co2Comp">—</span> kg</div>
+            </div>
+          </div>
+
+          <div class="note">
+            RGPD : les données bancaires ne doivent pas être stockées par l’application. Utilisez un prestataire (Stripe, etc.).
+            Ici, c’est un mock pour le projet.
+          </div>
+
+          <button class="btn btn-primary" type="submit">Payer & planter (démo)</button>
+        </form>
+
+        <div class="tile receipt" id="receipt">
+          <h2>Reçu (démo)</h2>
+          <p>Transaction : <b id="tx"></b></p>
+          <p>Arbres : <b id="txTrees"></b> — Total : <b id="txTotal"></b> €</p>
+          <p>Date : <b id="txDate"></b></p>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="dashboard.html">Retour dashboard</a>
+            <button class="btn" type="button" onclick="window.print()">Imprimer</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h2 style="margin:0 0 8px;font-size:16px;">Notes projet (à mettre dans ton rapport)</h2>
+        <ul style="margin:0 0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.6;">
+          <li>Finalité : compensation CO₂ via plantation.</li>
+          <li>Base légale : contrat (compensation), consentement (emails/classement/GPS).</li>
+          <li>Minimisation : pas de données bancaires stockées.</li>
+          <li>Conservation : paiements conservés selon obligations, trajets limités/anonymisés.</li>
+          <li>Mesures : HTTPS, RBAC, logs, chiffrement, hashing mdp.</li>
+        </ul>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="privacy.html">Politique</a>
+          <a class="btn" href="data-rights.html">Mes données</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>© <span id="y"></span> Heal The World</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="privacy.html">Confidentialité</a>
+        <a href="terms.html">Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Démo : tu peux remplacer par la vraie valeur du mois (backend)
+    const co2Month = 128.4; // kg
+    const kgPerTree = 20;   // kg/arbre (fictif)
+    document.getElementById("co2Month").textContent = co2Month.toFixed(1);
+    document.getElementById("kgPerTreeText").textContent = kgPerTree;
+
+    const rec = Math.max(1, Math.ceil(co2Month / kgPerTree));
+    document.getElementById("treesRec").textContent = rec;
+
+    // Prix par arbre selon plan (démo)
+    const prices = { standard: 3.5, local: 4.5, premium: 6.0 };
+
+    const treesInput = document.getElementById("trees");
+    const planSelect = document.getElementById("plan");
+    const priceTreeEl = document.getElementById("priceTree");
+    const totalEl = document.getElementById("total");
+    const co2CompEl = document.getElementById("co2Comp");
+
+    const receipt = document.getElementById("receipt");
+
+    function update(){
+      const trees = parseInt(treesInput.value || rec, 10);
+      const plan = planSelect.value;
+      const price = prices[plan] ?? prices.standard;
+      const total = Math.max(0, trees) * price;
+      const co2Comp = Math.max(0, trees) * kgPerTree;
+
+      priceTreeEl.textContent = price.toFixed(2);
+      totalEl.textContent = total.toFixed(2);
+      co2CompEl.textContent = co2Comp.toFixed(1);
+    }
+
+    treesInput.value = rec;
+    update();
+
+    treesInput.addEventListener("input", update);
+    planSelect.addEventListener("change", update);
+
+    function genTxId(){
+      return "HTW-" + Math.random().toString(16).slice(2, 10).toUpperCase();
+    }
+
+    document.getElementById("payForm").addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const trees = parseInt(treesInput.value || "0", 10);
+      if(!Number.isFinite(trees) || trees < 1){
+        alert("Veuillez saisir un nombre d’arbres valide (>= 1).");
+        return;
+      }
+
+      const plan = planSelect.value;
+      const price = prices[plan] ?? prices.standard;
+      const total = trees * price;
+
+      // Mock paiement OK
+      document.getElementById("tx").textContent = genTxId();
+      document.getElementById("txTrees").textContent = trees;
+      document.getElementById("txTotal").textContent = total.toFixed(2);
+      document.getElementById("txDate").textContent = new Date().toLocaleString("fr-FR");
+
+      receipt.style.display = "block";
+      receipt.scrollIntoView({ behavior: "smooth" });
+
+      alert("Paiement validé (démo) ✅");
+    });
+  </script>
+</body>
+</html>

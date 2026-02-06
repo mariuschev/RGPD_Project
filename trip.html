@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Déclarer un trajet</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:rgba(255,255,255,.06); --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72); --border:rgba(255,255,255,.12);
+      --primary:#2dd4bf; --primary2:#22c55e; --shadow:0 20px 50px rgba(0,0,0,.35);
+      --radius:18px; --danger:#fb7185;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+        linear-gradient(180deg,#070b14,var(--bg));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(980px,92vw);margin:0 auto}
+    header{border-bottom:1px solid var(--border);background:rgba(7,11,20,.6);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+               linear-gradient(135deg,var(--primary),var(--primary2));
+      border:1px solid rgba(255,255,255,.12)
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;border:1px solid var(--border);
+      background:rgba(255,255,255,.04);font-weight:650;font-size:14px;cursor:pointer
+    }
+    .btn:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
+    .btn-primary{
+      border-color:rgba(45,212,191,.35);
+      background:linear-gradient(135deg, rgba(45,212,191,.28), rgba(34,197,94,.22))
+    }
+    .btn-danger{border-color:rgba(251,113,133,.45);background:rgba(251,113,133,.12)}
+    main{padding:24px 0 50px}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;align-items:start}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    h1{margin:0 0 6px;font-size:26px}
+    .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+    form{display:grid;gap:12px;margin-top:10px}
+    label{font-size:13px;color:rgba(255,255,255,.82);font-weight:650}
+    input,select{
+      width:100%;padding:10px 12px;margin-top:6px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);
+      color:var(--text);outline:none
+    }
+    input:focus,select:focus{border-color:rgba(45,212,191,.5);box-shadow:0 0 0 6px rgba(45,212,191,.10)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .tile{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:var(--radius);padding:14px}
+    .tile h2{margin:0 0 6px;font-size:15px}
+    .tile p, .tile li{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+    .tile ul{margin:8px 0 0 18px}
+    .check{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:14px
+    }
+    .check input{width:auto;margin:2px 0 0}
+    .check b{font-size:13px}
+    .check p{margin:3px 0 0;color:var(--muted);font-size:12.5px}
+    .error{
+      display:none;border:1px solid rgba(251,113,133,.35);background:rgba(251,113,133,.10);
+      color:rgba(255,255,255,.92);border-radius:14px;padding:10px 12px;font-size:13px
+    }
+    .kpi{
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px
+    }
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.85);font-size:12.5px
+    }
+    footer{border-top:1px solid var(--border);padding:18px 0 26px;color:var(--muted);font-size:13px;margin-top:18px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="dashboard.html"><div class="logo"></div><span>Heal The World</span></a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn" href="dashboard.html">Dashboard</a>
+        <a class="btn" href="privacy.html">Confidentialité</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <div class="card">
+        <h1>Déclarer un trajet</h1>
+        <p class="sub">Saisie manuelle recommandée. Le GPS est optionnel et nécessite votre consentement.</p>
+
+        <div id="errorBox" class="error" role="alert"></div>
+
+        <form id="tripForm" novalidate>
+          <div class="row2">
+            <div>
+              <label for="transport">Mode de transport</label>
+              <select id="transport" required>
+                <option value="">— Choisir —</option>
+                <option value="walk">Marche</option>
+                <option value="bike">Vélo</option>
+                <option value="bus">Bus</option>
+                <option value="train">Train</option>
+                <option value="car">Voiture</option>
+                <option value="motorbike">Moto</option>
+                <option value="metro">Métro/Tram</option>
+              </select>
+            </div>
+            <div>
+              <label for="date">Date</label>
+              <input id="date" type="date" required />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div>
+              <label for="distance">Distance (km)</label>
+              <input id="distance" type="number" min="0" step="0.1" placeholder="ex: 12.5" required />
+            </div>
+            <div>
+              <label for="duration">Durée (min) (optionnel)</label>
+              <input id="duration" type="number" min="0" step="1" placeholder="ex: 35" />
+            </div>
+          </div>
+
+          <div class="check">
+            <input id="useGPS" type="checkbox" />
+            <div>
+              <b>Utiliser le GPS (optionnel)</b>
+              <p>
+                En cochant, vous consentez à la collecte de localisation uniquement pour ce trajet.
+                Vous pouvez retirer ce consentement à tout moment.
+              </p>
+            </div>
+          </div>
+
+          <div id="gpsBox" class="tile" style="display:none;">
+            <h2>Localisation (démo)</h2>
+            <p>En vrai : vous récupérez les coordonnées via l’API navigateur (Geolocation) avec HTTPS.</p>
+            <div class="kpi">
+              <div class="pill">📍 Lat: <span id="lat">—</span></div>
+              <div class="pill">📍 Lng: <span id="lng">—</span></div>
+            </div>
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn" type="button" id="btnGetGPS">Récupérer GPS</button>
+              <button class="btn btn-danger" type="button" id="btnClearGPS">Effacer GPS</button>
+            </div>
+            <p class="sub" style="margin-top:10px;">
+              Minimisation : stocker seulement ce qui est nécessaire (ex: distance calculée), éviter l’historique GPS brut.
+            </p>
+          </div>
+
+          <div class="tile">
+            <h2>Estimation CO₂ (démo)</h2>
+            <p>Calcul simplifié basé sur un facteur moyen par km (à remplacer par tes valeurs).</p>
+            <div class="kpi">
+              <div class="pill">🧮 Facteur: <span id="factor">—</span> kg/km</div>
+              <div class="pill">🌫️ CO₂ estimé: <span id="co2">—</span> kg</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Enregistrer le trajet</button>
+        </form>
+      </div>
+
+      <aside class="card">
+        <h2 style="margin:0 0 8px;font-size:16px;">RGPD — bonnes pratiques</h2>
+        <ul style="margin:0 0 0 18px;color:var(--muted);font-size:13.5px;line-height:1.6;">
+          <li>Par défaut : saisie manuelle (moins intrusive).</li>
+          <li>GPS : consentement explicite + finalité claire.</li>
+          <li>Ne pas conserver les coordonnées si non nécessaires.</li>
+          <li>Conservation : limiter (ex: 24 mois), puis anonymiser.</li>
+          <li>Sécurité : HTTPS + contrôle d’accès.</li>
+        </ul>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="data-rights.html">Mes données</a>
+          <a class="btn" href="dashboard.html">Retour</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>© <span id="y"></span> Heal The World</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="privacy.html">Confidentialité</a>
+        <a href="terms.html">Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const errorBox = document.getElementById("errorBox");
+    const gpsBox = document.getElementById("gpsBox");
+    const useGPS = document.getElementById("useGPS");
+    const latEl = document.getElementById("lat");
+    const lngEl = document.getElementById("lng");
+
+    // Facteurs CO2 (kg/km) — valeurs DEMO (à adapter)
+    const factors = {
+      walk: 0.0,
+      bike: 0.0,
+      train: 0.03,
+      metro: 0.04,
+      bus: 0.08,
+      motorbike: 0.10,
+      car: 0.17
+    };
+
+    function showError(msg){
+      errorBox.textContent = msg;
+      errorBox.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function clearError(){
+      errorBox.textContent = "";
+      errorBox.style.display = "none";
+    }
+
+    function updateCO2(){
+      const t = document.getElementById("transport").value;
+      const d = parseFloat(document.getElementById("distance").value || "0");
+      const factor = factors[t] ?? 0;
+      const co2 = d * factor;
+      document.getElementById("factor").textContent = factor.toFixed(2);
+      document.getElementById("co2").textContent = co2.toFixed(2);
+    }
+
+    document.getElementById("transport").addEventListener("change", updateCO2);
+    document.getElementById("distance").addEventListener("input", updateCO2);
+
+    useGPS.addEventListener("change", () => {
+      gpsBox.style.display = useGPS.checked ? "block" : "none";
+      if(!useGPS.checked){
+        latEl.textContent = "—";
+        lngEl.textContent = "—";
+      }
+    });
+
+    document.getElementById("btnGetGPS").addEventListener("click", () => {
+      // Démo : si tu veux utiliser vrai GPS, il faut HTTPS + navigator.geolocation
+      // navigator.geolocation.getCurrentPosition(...)
+      latEl.textContent = "48.8566";
+      lngEl.textContent = "2.3522";
+      alert("GPS récupéré (démo).");
+    });
+
+    document.getElementById("btnClearGPS").addEventListener("click", () => {
+      latEl.textContent = "—";
+      lngEl.textContent = "—";
+      alert("GPS effacé (démo).");
+    });
+
+    document.getElementById("tripForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      clearError();
+
+      const t = document.getElementById("transport").value;
+      const date = document.getElementById("date").value;
+      const d = parseFloat(document.getElementById("distance").value || "NaN");
+
+      if(!t) return showError("Veuillez choisir un mode de transport.");
+      if(!date) return showError("Veuillez choisir une date.");
+      if(!Number.isFinite(d) || d <= 0) return showError("Veuillez saisir une distance valide (> 0).");
+
+      // Ici tu envoies au backend:
+      // - transport, date, distance, duration
+      // - GPS seulement si useGPS.checked et coords présentes
+      alert("Trajet enregistré (démo) ✅");
+      window.location.href = "dashboard.html";
+    });
+
+    updateCO2();
+  </script>
+</body>
+</html>

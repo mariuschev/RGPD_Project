@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Accueil</title>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --border: rgba(255,255,255,.12);
+      --primary: #2dd4bf;   /* vert-bleu */
+      --primary2:#22c55e;   /* vert */
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+        linear-gradient(180deg, #070b14, var(--bg));
+      line-height: 1.5;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(var(--max), 92vw); margin: 0 auto; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(7,11,20,.6);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+
+    .logo{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
+        linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 10px 25px rgba(45,212,191,.18);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    nav ul{
+      list-style: none;
+      display:flex;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .nav-link{
+      color: var(--muted);
+      font-weight: 550;
+      font-size: 14px;
+    }
+    .nav-link:hover{ color: var(--text); }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+      transition: transform .08s ease, background .2s ease, border .2s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary{
+      border-color: rgba(45,212,191,.35);
+      background: linear-gradient(135deg, rgba(45,212,191,.28), rgba(34,197,94,.22));
+    }
+
+    /* Hero */
+    .hero{
+      padding: 52px 0 22px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      overflow:hidden;
+      position: relative;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 650;
+      color: rgba(255,255,255,.85);
+      border: 1px solid rgba(45,212,191,.28);
+      background: rgba(45,212,191,.10);
+      padding: 6px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .hero h1{
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 15.5px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .mini{
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+
+    .stat{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+    }
+    .stat .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 0 0 6px rgba(45,212,191,.12);
+      flex: 0 0 auto;
+    }
+    .stat h3{
+      margin: 0;
+      font-size: 14.5px;
+      letter-spacing: .2px;
+    }
+    .stat p{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .section-title span{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .tile{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+
+    .tile .num{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      margin-bottom: 10px;
+    }
+    .tile h3{ margin: 0 0 6px; font-size: 15px; }
+    .tile p{ margin: 0; color: var(--muted); font-size: 13.5px; }
+
+    .rgpd{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .rgpd .tile ul{
+      margin: 8px 0 0 18px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .rgpd .tile li{ margin: 4px 0; }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border);
+      margin-top: 18px;
+      padding: 18px 0 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-row{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .rgpd{ grid-template-columns: 1fr; }
+      nav ul{ display:none; } /* simple: cacher menu sur mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Heal The World</span>
+      </a>
+
+      <nav aria-label="Menu principal">
+        <ul>
+          <li><a class="nav-link" href="#comment">Comment ça marche</a></li>
+          <li><a class="nav-link" href="#rgpd">RGPD & Données</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <a class="btn" href="login.html">Se connecter</a>
+        <a class="btn btn-primary" href="register.html">S’inscrire</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-label="Présentation">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="badge">🌍 Objectif : compenser le CO₂ en plantant des arbres</div>
+          <h1>Mesurez vos trajets, calculez votre impact, compensez chaque mois.</h1>
+          <p>
+            Heal The World aide ses membres à estimer leurs émissions de CO₂ à partir de leurs déplacements,
+            puis à les compenser via une plantation d’arbres (avec paiement).
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="register.html">Créer un compte</a>
+            <a class="btn" href="#comment">Découvrir le fonctionnement</a>
+          </div>
+
+          <p class="mini">
+            Respect du RGPD : collecte minimale, transparence, et contrôle total de vos données.
+          </p>
+        </div>
+
+        <div class="side">
+          <div class="stat">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>Trajets (manuel ou GPS)</h3>
+              <p>Déclarez vos déplacements. Le GPS est optionnel et soumis à consentement.</p>
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>Calcul CO₂ automatique</h3>
+              <p>Estimation claire et historique mensuel pour suivre votre évolution.</p>
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>Compensation mensuelle</h3>
+              <p>Plantez des arbres selon votre impact, avec reçu et suivi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENT CA MARCHE -->
+    <section id="comment" aria-label="Comment ça marche">
+      <div class="section-title">
+        <h2>Comment ça marche</h2>
+        <span>3 étapes simples</span>
+      </div>
+
+      <div class="grid3">
+        <div class="tile">
+          <div class="num">1</div>
+          <h3>Inscription</h3>
+          <p>Créez votre compte et choisissez vos préférences (ex: GPS, emails).</p>
+        </div>
+
+        <div class="tile">
+          <div class="num">2</div>
+          <h3>Déclarez vos trajets</h3>
+          <p>Manuellement (recommandé) ou via GPS (optionnel) pour calculer le CO₂.</p>
+        </div>
+
+        <div class="tile">
+          <div class="num">3</div>
+          <h3>Compensez</h3>
+          <p>Chaque mois, compensez vos émissions en finançant la plantation d’arbres.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RGPD -->
+    <section id="rgpd" aria-label="RGPD et données">
+      <div class="section-title">
+        <h2>RGPD & Données personnelles</h2>
+        <span>transparence + contrôle</span>
+      </div>
+
+      <div class="rgpd">
+        <div class="tile">
+          <h3>Ce que nous collectons (minimum)</h3>
+          <ul>
+            <li>Données de compte (email, mot de passe chiffré)</li>
+            <li>Données de trajets (type, distance, date)</li>
+            <li>Données de paiement (via prestataire, pas stockées en clair)</li>
+            <li>GPS uniquement si vous l’activez</li>
+          </ul>
+        </div>
+
+        <div class="tile">
+          <h3>Vos droits</h3>
+          <ul>
+            <li>Accès, rectification, suppression</li>
+            <li>Export de vos données</li>
+            <li>Retrait du consentement à tout moment</li>
+            <li>Gestion des préférences (GPS / emails / classement)</li>
+          </ul>
+
+          <div class="cta-row" style="margin-top:12px;">
+            <a class="btn" href="privacy.html">Politique de confidentialité</a>
+            <a class="btn" href="data-rights.html">Gérer mes données</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span>support & questions</span>
+      </div>
+
+      <div class="tile">
+        <p style="margin:0;color:var(--muted);font-size:13.5px;">
+          Besoin d’aide ? Contactez-nous : <strong>support@healtheworld.local</strong>
+          (adresse à remplacer) — ou ajoutez ici un formulaire de contact.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="y"></span> Heal The World — Tous droits réservés</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a class="nav-link" href="privacy.html">Politique de confidentialité</a>
+        <a class="nav-link" href="terms.html">Conditions</a>
+        <a class="nav-link" href="login.html">Connexion</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // année automatique
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

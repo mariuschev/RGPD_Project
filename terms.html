@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heal The World — Conditions d’utilisation</title>
+  <style>
+    :root{--bg:#0b1220;--card:rgba(255,255,255,.06);--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--border:rgba(255,255,255,.12);--shadow:0 20px 50px rgba(0,0,0,.35);--radius:18px;--primary:#2dd4bf;--primary2:#22c55e;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:
+      radial-gradient(1200px 700px at 10% 0%, rgba(34,197,94,.18), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(45,212,191,.18), transparent 60%),
+      linear-gradient(180deg,#070b14,var(--bg));min-height:100vh}
+    .container{width:min(980px,92vw);margin:0 auto}
+    header{border-bottom:1px solid var(--border);background:rgba(7,11,20,.6);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo{width:38px;height:38px;border-radius:12px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),linear-gradient(135deg,var(--primary),var(--primary2));border:1px solid rgba(255,255,255,.12)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.04);font-weight:650;font-size:14px;text-decoration:none;color:inherit}
+    .btn:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
+    main{padding:28px 0 50px}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    h1{margin:0 0 10px;font-size:26px}
+    h2{margin:18px 0 8px;font-size:16px}
+    p,li{color:var(--muted);font-size:14px;line-height:1.6}
+    ul{margin:8px 0 0 18px}
+    footer{border-top:1px solid var(--border);padding:18px 0 26px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html"><div class="logo"></div><span>Heal The World</span></a>
+      <a class="btn" href="privacy.html">Confidentialité</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Conditions d’utilisation</h1>
+      <p>Document simplifié pour le projet. À adapter selon les besoins réels.</p>
+
+      <h2>1) Objet</h2>
+      <p>L’application permet de déclarer des trajets, estimer des émissions CO₂, et compenser via plantation d’arbres.</p>
+
+      <h2>2) Compte</h2>
+      <ul>
+        <li>Vous êtes responsable de la confidentialité de vos identifiants.</li>
+        <li>En cas d’abus, le compte peut être suspendu.</li>
+      </ul>
+
+      <h2>3) Déclaration des trajets</h2>
+      <ul>
+        <li>Les données saisies doivent être exactes et pertinentes.</li>
+        <li>Le GPS est optionnel et soumis à consentement.</li>
+      </ul>
+
+      <h2>4) Paiements</h2>
+      <p>Les paiements sont traités par un prestataire. Les données bancaires ne sont pas stockées par l’application.</p>
+
+      <h2>5) Classement</h2>
+      <p>Optionnel. Affichage recommandé sous pseudo. Désactivation possible à tout moment.</p>
+
+      <h2>6) Données personnelles</h2>
+      <p>Consultez la <a href="privacy.html" style="text-decoration:underline; text-underline-offset:3px;">Politique de confidentialité</a>.</p>
+
+      <h2>7) Contact</h2>
+      <p>Support : support@healtheworld.local (à remplacer).</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div>© <span id="y"></span> Heal The World</div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="login.html">Connexion</a>
+        <a href="register.html">Inscription</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
